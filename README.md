@@ -1,5 +1,5 @@
-## UC Berkeley Data Analytics and Visualization Bootcamp 
 # Project 3: City of Chicago Car Crashes
+## UC Berkeley Data Analytics and Visualization Bootcamp 
 
 The purpose of this project is to analyze the data regarding car crashes in the City of Chicago and to create visualizations that will help us answer the following questions:
 
