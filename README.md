@@ -43,12 +43,6 @@ https://dev.socrata.com/foundry/data.cityofchicago.org/85ca-t3if
 Mapping:  https://plotly.com/python/scattermapbox/, https://dash.plotly.com/
 
 
-Screenshots of relevant, "inspiring" visualizations that show your creative ideas:
-![image](https://github.com/DavidRob8/ChicagoTrafficCrashes/assets/150605617/18dec27b-5701-4904-b21e-b9fda25a4170)
-![image](https://github.com/DavidRob8/ChicagoTrafficCrashes/assets/150605617/b07de6c0-fa15-408b-a128-fe9eb8bc899d)
-![image](https://github.com/DavidRob8/ChicagoTrafficCrashes/assets/150605617/83c24aaa-a50b-476c-94a4-01fc2fc6dcc6)
-![image](https://github.com/DavidRob8/ChicagoTrafficCrashes/assets/150605617/c6a8fd41-dff2-4c9e-b16d-873a3c21f67a)
-
 
 
 
