@@ -52,7 +52,8 @@ The data that we used for this project is crash data within the City of Chicago 
 
 ## Sources
 https://dev.socrata.com/foundry/data.cityofchicago.org/85ca-t3if
-https://data.cityofchicago.org/resource/85ca-t3if.json![image](https://github.com/DavidRob8/ChicagoTrafficCrashes/assets/149534473/2675cd61-5c8f-403c-a01e-bdf6f9986690)
+
+https://data.cityofchicago.org/resource/85ca-t3if.json
 
 
 ## Built With:
