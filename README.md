@@ -19,8 +19,17 @@ The initial dataset that we obtained from the source was massive. It contained d
 The five questions listed above were answered with visualizations created with different programming languages, Python and JavaScript, as well as several different libraries. Below are instructions on how to use and interact with each visualization used to answer each corresponding question.
 
 1. What are the areas in Chicago with the most accidents and what are the primary reasons? (Everardo)
-2. How does lighting affect the amount of car crashes? (Julio)
-3. How does the presence of traffic control devices affect car crash rates and the incidence of severe injuries or fatalities? (David)
+
+The purpose of this map visualization is to show the areas of Chicago with the most car accidents while also finding the most common causes. This map uses live data from https://dev.socrata.com/foundry/data.cityofchicago.org/85ca-t3if.
+
+- At the top right of the screen we have three ways to view our map (Street Map, Satellite and Dark Mode), we can select one at a time.
+- In the same white box but a little lower, we have three other ways to view our data, you can choose one, two or three at a time, it's up to you. Each mark on the map is a car accident that occurred in the previous 4 or 5 days. If you click on one of those marks, you will be able to see information about this accident (location, date of accident, date of accident, cause of accident, lighting conditions, and weather conditions).
+- In the lower right part we can see all the Accidents Cause arranged in descending order (from most common to least common).
+- In the lower left part we can see the data we are seeing from what day until what day is this data.
+
+
+3. How does lighting affect the amount of car crashes? (Julio)
+4. How does the presence of traffic control devices affect car crash rates and the incidence of severe injuries or fatalities? (David)
 
 Using Plotly Express and Dash in a Jupyter Notebook file, I created a scatter mapbox to show and compare serious car accidents (only car accidents that resulted in fatal or incapacitating injury) with or without a traffic control device (i.e. traffic signal, yield sign, school zone, etc.). The idea of the scatter mapbox is to see whether or not traffic control devices have had an effect on serious car accidents. The data set used is for car crashes in the city of Chicago for the years 2022 and 2023. The map will display the city of Chicago, with markers representing car crashes. As shown in the legend, red markers represent accidents that were fatal with a device present, blue markers represent accidents that were fatal without a device present, yellow markers represent accidents that caused incapacitating injury with a device present, and green markers represent accidents that caused incapacitating injury without a device present. The legend also shows the count for each type of crash for the selected timeframe. There are two dropdown menus: "Select Year" and "Select Month". To view accidents for all of 2022 or all of 2023, select "All of 2022" or "All of 2023", respectively, in the "Select Year" dropdown menu. To view accidents by month, select "2022" or "2023" in the "Select Year" dropdown menu, and choose a month to view in the "Select Month" dropdown menu. You can also hover over the the markers to see the crash date and the traffic control device present, if any. 
    
