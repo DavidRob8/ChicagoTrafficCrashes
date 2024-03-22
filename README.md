@@ -23,7 +23,7 @@ The five questions listed above were answered with visualizations created with d
 The purpose of this map visualization is to show the areas of Chicago with the most car accidents while also finding the most common causes. This map uses live data from https://dev.socrata.com/foundry/data.cityofchicago.org/85ca-t3if.
 
 - At the top right of the screen we have three ways to view our map (Street Map, Satellite and Dark Mode), we can select one at a time.
-- In the same white box but a little lower, we have three other ways to view our data, you can choose one, two or three at a time, it's up to you. Each mark on the map is a car accident that occurred in the previous 4 or 5 days. If you click on one of those marks, you will be able to see information about this accident (location, date of accident, date of accident, cause of accident, lighting conditions, and weather conditions).
+- In the same white box but a little lower, we have three other ways to display our data, you can choose one, two or three at the same time, it's up to you. Each mark on the map is a car accident that occurred in the previous 4 or 5 days. If you click on one of those marks, you will be able to see information about this accident (location, date of accident, date of accident, cause of accident, lighting conditions, and weather conditions).
 - In the lower right part we can see all the Accidents Cause arranged in descending order (from most common to least common).
 - In the lower left part we can see the data we are seeing from what day until what day is this data.
 
