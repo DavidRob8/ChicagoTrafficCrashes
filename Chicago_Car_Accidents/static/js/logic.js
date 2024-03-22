@@ -112,8 +112,7 @@ function createMarkers(response) {
 
       // Update legend data
       if (!legends[crash.prim_contributory_cause]) {
-        // If getRandomColor() function was removed, you might want to assign a color scheme here.
-        // For simplicity, let's assign a default color.
+        
         let color = '#000000'; // Black color
         legends[crash.prim_contributory_cause] = {
           color: color,
@@ -135,12 +134,11 @@ function createMarkers(response) {
   createMap(crashLayer, heatLayer, markerCluster, legends);
 
   // Display first and last crash dates
-  displayFirstLastCrashDates(response);
+  displayCrashDates(response);
 }
 
 // Function to display first and last crash dates
-// Function to display first and last crash dates
-function displayFirstLastCrashDates(response) {
+function displayCrashDates(response) {
   let firstCrashDate = '';
   let lastCrashDate = '';
   
