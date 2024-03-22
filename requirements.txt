@@ -1,3 +1,0 @@
-dash==2.0.0
-plotly==5.3.1
-pandas==2.1.4
