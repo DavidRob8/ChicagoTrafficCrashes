@@ -59,7 +59,7 @@ https://data.cityofchicago.org/resource/85ca-t3if.json![image](https://github.co
 
 Mapping:  https://plotly.com/python/scattermapbox/, https://dash.plotly.com/
 
-
+JavaScript-powered visualizations: https://leafletjs.com/
 
 
 
