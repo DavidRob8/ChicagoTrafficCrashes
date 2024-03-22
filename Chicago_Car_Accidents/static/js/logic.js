@@ -1,8 +1,5 @@
-
-
 // Function to create map
 function createMap(crashLayer, heatLayer, markerCluster, legends) {
-
   // Create the tile layer that will be the background of our map.
   let streetmap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -31,7 +28,7 @@ function createMap(crashLayer, heatLayer, markerCluster, legends) {
   };
 
   // Create the map object with options.
-  let map = L.map("map-id", {
+  map = L.map("map-id", {
     center: [41.8781, -87.6298], // Chicago's coordinates
     zoom: 12,
     layers: [streetmap, crashLayer, heatLayer, markerCluster]
@@ -57,7 +54,7 @@ function createLegendControl(legends) {
     let div = L.DomUtil.create('div', 'info legend');
     
     // Define the box properties
-    div.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+    div.style.backgroundColor = 'rgba(255, 255, 255, .7)';
     div.style.padding = '10px';
     div.style.borderRadius = '5px';
     div.style.maxHeight = '200px'; // we can adjust this 
@@ -68,7 +65,6 @@ function createLegendControl(legends) {
       <div style="font-size: 14px; margin-bottom: 5px;"><strong>Accident Cause</strong></div>
       <div style="font-size: 12px;">`;
 
-
     // Sort legends by count
     const sortedLegends = Object.entries(legends).sort((a, b) => b[1].count - a[1].count);
     
@@ -77,28 +73,10 @@ function createLegendControl(legends) {
       div.innerHTML += `<div><span style="color:${color}">&bull;</span> ${cause} (${count})</div>`;
     });
 
-    
-
     div.innerHTML += `</div>`; // Close the legend content
 
     return div;
   };
-
-  return legend;
-}
-
-// Function to create legend
-function createLegend(color, cause, count) {
-  let legend = L.control({ 
-    position: 'topright' 
-  });
-
-  legend.onAdd = function (map) {
-    let div = L.DomUtil.create('div', 'info legend');
-    div.innerHTML = `<div style="margin: 0; font-size: 12px;"><strong>${cause}</strong> <strong>(${count})</strong></div>`;
-    return div;
-  };
-  
 
   return legend;
 }
@@ -134,9 +112,8 @@ function createMarkers(response) {
 
       // Update legend data
       if (!legends[crash.prim_contributory_cause]) {
-        // If getRandomColor() function was removed, you might want to assign a color scheme here.
-        // For simplicity, let's assign a default color.
-        let color = '#00FF00'; // Black color
+        
+        let color = '#000000'; // Black color
         legends[crash.prim_contributory_cause] = {
           color: color,
           count: 1
@@ -150,35 +127,66 @@ function createMarkers(response) {
   // Create a layer group from carMarkers array.
   let crashLayer = L.layerGroup(carMarkers);
 
-    // Create a heatmap layer from heatArray.
+  // Create a heatmap layer from heatArray.
   let heatLayer = L.heatLayer(heatArray, { radius: 80, blur: 50 });
 
   // Create a map with crashLayer, heatLayer, and markerCluster.
   createMap(crashLayer, heatLayer, markerCluster, legends);
+
+  // Display first and last crash dates
+  displayCrashDates(response);
 }
 
-  // Perform an API call to get the crash information. Call createMarkers when it completes.
-  d3.json("https://data.cityofchicago.org/resource/85ca-t3if.json")
+// Function to display first and last crash dates
+function displayCrashDates(response) {
+  let firstCrashDate = '';
+  let lastCrashDate = '';
+  
+  // Loop through the response array to find first and last crash dates
+  response.forEach(crash => {
+    if (!firstCrashDate || new Date(crash.crash_date) < new Date(firstCrashDate)) {
+      firstCrashDate = crash.crash_date;
+    }
+    if (!lastCrashDate || new Date(crash.crash_date) > new Date(lastCrashDate)) {
+      lastCrashDate = crash.crash_date;
+    }
+  });
+  
+  // Construct HTML content for first and last crash dates
+  let content = `
+    <div style="font-size: 14px; margin-bottom: 5px;"><strong>First and Last Crash Dates in this Map</strong></div>
+    <div style="font-size: 12px;">
+      <div>First Crash Date: <span>${new Date(firstCrashDate).toDateString()}</span></div>
+      <div>Last Crash Date: <span>${new Date(lastCrashDate).toDateString()}</span></div>
+    </div>
+  `;
+  
+  // Create a legend control
+  let legend = L.control({
+    position: 'bottomleft'
+  });
+  
+  legend.onAdd = function(map) {
+    let div = L.DomUtil.create('div', 'info legend');
+    
+    // Define the box properties
+    div.style.backgroundColor = 'rgba(255, 255, 255, .7)';
+    div.style.padding = '10px';
+    div.style.borderRadius = '5px';
+    div.style.maxHeight = '200px'; // we can adjust this 
+    div.style.overflowY = 'auto'; // Enable vertical scrolling if content exceeds the height
+    
+    // Set the content
+    div.innerHTML = content;
+
+    return div;
+  };
+
+  // Add legend to the map
+  legend.addTo(map);
+}
+
+// Perform an API call to get the crash information. Call createMarkers when it completes.
+d3.json("https://data.cityofchicago.org/resource/85ca-t3if.json")
   .then(createMarkers);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
