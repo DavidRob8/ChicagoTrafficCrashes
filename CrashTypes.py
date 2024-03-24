@@ -129,3 +129,32 @@ fig = px.bar(mean_injuries_per_type,
              width=800)
 
 fig.show()
+
+# Last chart
+
+# Extracting "First Crash Type" and "Damage" columns
+first_crash_type_damage = crashes_df[["FIRST_CRASH_TYPE", "DAMAGE"]]
+
+# Grouping by "Damage" and counting occurrences
+damage_counts = first_crash_type_damage.groupby("DAMAGE").size()
+
+# Sorting by damage counts in descending order
+damage_counts = damage_counts.sort_values(ascending=False)
+
+# Convert damage_counts Series to DataFrame
+damage_counts_df = damage_counts.reset_index(name='Number of Crashes')
+
+# Plotting the bar chart using Plotly Express
+fig = px.bar(damage_counts_df, 
+             x='DAMAGE', 
+             y='Number of Crashes', 
+             title='Number of Crashes by Damage Amount',
+             labels={'DAMAGE': 'Average Damage Cost', 'Number of Crashes': 'Number of Crashes'},
+             height=600,
+             width=800)
+
+# Rotate x-axis labels for better readability
+fig.update_layout(xaxis=dict(tickangle=-45))
+
+# Show the interactive plot
+fig.show()
