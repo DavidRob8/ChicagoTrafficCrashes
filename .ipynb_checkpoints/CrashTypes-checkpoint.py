@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python
 # coding: utf-8
 
@@ -6,8 +7,8 @@
 
 # Import libraries
 import pandas as pd
-import plotly.graph_objs as go 
-import plotly.express as px 
+import plotly.graph_objs as go
+import plotly.express as px
 import dash
 from dash import Dash, dcc, html, Input, Output
 
@@ -138,7 +139,7 @@ year_options = [{'label': 'All of 2022', 'value': 'All of 2022'},
 # In[17]:
 
 
-# Create the layout using html.Div 
+# Create the layout using html.Div
 app.layout = html.Div([
     # H1 element for the title
     html.H1("Impact of Traffic Control Devices on Car Accidents",  style={'width': '500px', 'white-space': 'pre-wrap'}),
@@ -156,7 +157,7 @@ app.layout = html.Div([
                 style={'width': '150px', 'font-size': '14px'}
             )
         ], style={'position': 'absolute', 'top': '10px', 'right': '180px'}),
-        
+
         html.Div([
             # Creating dropdown for month for user to select
             html.Label("Select Month:", style={'font-size': '14px'}),
@@ -167,11 +168,11 @@ app.layout = html.Div([
                 style={'width': '150px', 'font-size': '14px'}
             )
         ], style={'position': 'absolute', 'top': '10px', 'right': '10px'}),
-    ], style={'position': 'relative', 'height': '100px'}),    
+    ], style={'position': 'relative', 'height': '100px'}),
     # Create a graph for displaying the map
     dcc.Graph(id='map-graph')
 ])
-    
+
 
 
 # In[18]:
@@ -213,7 +214,7 @@ def update_map(selected_year, selected_month):
         # Convert selected year to integer and filter df based on selected year and month
         selected_year = int(selected_year)
         selected_month_num = month_to_num[selected_month]
-        filtered_df = final_data[(final_data['CRASH_DATE'].dt.year == selected_year) & 
+        filtered_df = final_data[(final_data['CRASH_DATE'].dt.year == selected_year) &
                                  (final_data['CRASH_DATE'].dt.month == selected_month_num)]
 
     # Create map using Plotly Express
@@ -222,7 +223,7 @@ def update_map(selected_year, selected_month):
     # Define categories and colors
     categories = sorted(filtered_df['CATEGORIES'].unique())
     colors = ['red', 'blue', 'yellow', 'green']
-    
+
     # Add markers for each category
     for category, color in zip(categories, colors):
         # Filtering based on selected category
@@ -244,7 +245,7 @@ def update_map(selected_year, selected_month):
             hoverinfo='text'
         )
 
-    # Defining type of map and margins    
+    # Defining type of map and margins
     fig.update_layout(mapbox_style="carto-positron")
     fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 
