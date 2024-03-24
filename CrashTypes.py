@@ -1,275 +1,156 @@
-
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
-# Import libraries
 import pandas as pd
-import plotly.graph_objs as go
+from pathlib import Path
+import matplotlib.pyplot as plt
+import seaborn as sns
 import plotly.express as px
+from flask import Flask
 import dash
 from dash import Dash, dcc, html, Input, Output
 
+app = Flask(__name__)
 
-# In[2]:
 
+csv_path = Path("2022-2023.csv")
 
-# Assigning variable to csv path
-file_path = '2022-2023.csv'
 
+crashes_df = pd.read_csv(csv_path, low_memory=False)
 
-# In[3]:
+crashes_df.dtypes
 
 
-# Reading in csv file as Pandas DataFrame
-init_data_df = pd.read_csv(file_path)
-init_data_df.head()
+crash_type_column = crashes_df["FIRST_CRASH_TYPE"]
+crash_type_column
 
 
-# In[4]:
+crash_type_counts = crash_type_column.value_counts()
 
+print(crash_type_counts)
 
-init_data_df['TRAFFIC_CONTROL_DEVICE'].unique()
 
+crash_type_counts = crash_type_column.value_counts()
 
-# In[5]:
+# Plotting the bar chart
+crash_type_counts.plot(kind='bar')
 
+# Adding title and labels
+plt.title('Crash Type Counts')
+plt.xlabel('Crash Type')
+plt.ylabel('Count')
 
-delete_values = ['UNKNOWN', 'OTHER', 'OTHER REG. SIGN']
-mask = init_data_df['TRAFFIC_CONTROL_DEVICE'].isin(delete_values)
-filtered_init_data_df = init_data_df[~mask]
-len(filtered_init_data_df)
+# Show the plot
+plt.show()
 
 
-# In[6]:
+import pandas as pd
 
+# Assuming crash_type_column is your Series containing crash types
 
-# Deleting rows with no longitude or latitude values
-clean_filtered_df = filtered_init_data_df.dropna(subset=['LATITUDE', 'LONGITUDE', 'MOST_SEVERE_INJURY'])
-len(clean_filtered_df)
+# Calculate crash type counts
+crash_type_counts = crash_type_column.value_counts()
 
+# Create a DataFrame with crash types and their corresponding counts
+crash_type_counts_df = pd.DataFrame({'Crash Type': crash_type_counts.index, 'Count': crash_type_counts.values})
 
-# In[7]:
+print(crash_type_counts_df)
 
+first_crash_type_damage = crashes_df[["FIRST_CRASH_TYPE", "DAMAGE"]]
 
-clean_filtered_df['MOST_SEVERE_INJURY'].unique()
+# Displaying the extracted data
+print(first_crash_type_damage)
 
 
-# In[8]:
+first_crash_type_damage = crashes_df[["FIRST_CRASH_TYPE", "DAMAGE"]]
 
+# Displaying the extracted data
+print(first_crash_type_damage)
 
-delete_values = ['NO INDICATION OF INJURY', 'REPORTED, NOT EVIDENT', 'NONINCAPACITATING INJURY']
-mask = clean_filtered_df['MOST_SEVERE_INJURY'].isin(delete_values)
-final_data = clean_filtered_df[~mask]
-print(len(final_data))
-final_data.head()
 
+first_crash_type_damage.head()
 
-# In[9]:
 
 
-final_data['CRASH_DATE'] = pd.to_datetime(final_data['CRASH_DATE'])
-final_data.head()
 
+# Assuming crashes_df is your DataFrame
 
-# In[10]:
+# Extracting "First Crash Type" and "Damage" columns
+first_crash_type_damage = crashes_df[["FIRST_CRASH_TYPE", "DAMAGE"]]
 
+# Grouping by "Damage" and counting occurrences
+damage_counts = first_crash_type_damage.groupby("DAMAGE").size()
 
-final_data.info()
+# Sorting by damage counts in descending order
+damage_counts = damage_counts.sort_values(ascending=False)
 
+# Plotting the bar chart
+plt.figure(figsize=(10, 6))
+damage_counts.plot(kind='bar', color='skyblue')
+plt.title('Number of Crashes by Damage Type')
+plt.xlabel('Damage Type')
+plt.ylabel('Number of Crashes')
+plt.xticks(rotation=45, ha='right')
+plt.tight_layout()
+plt.show()
 
-# In[11]:
 
 
-final_data['CATEGORIES'] = ''
+import pandas as pd
 
-final_data.loc[(final_data['MOST_SEVERE_INJURY'] == 'FATAL') & (final_data['TRAFFIC_CONTROL_DEVICE'] != 'NO CONTROLS'), 'CATEGORIES'] = 'FATAL with Device'
-final_data.loc[(final_data['MOST_SEVERE_INJURY'] == 'FATAL') & (final_data['TRAFFIC_CONTROL_DEVICE'] == 'NO CONTROLS'), 'CATEGORIES'] = 'FATAL without Device'
-final_data.loc[(final_data['MOST_SEVERE_INJURY'] == 'INCAPACITATING INJURY') & (final_data['TRAFFIC_CONTROL_DEVICE'] != 'NO CONTROLS'), 'CATEGORIES'] = 'INCAPACITATING INJURY with Device'
-final_data.loc[(final_data['MOST_SEVERE_INJURY'] == 'INCAPACITATING INJURY') & (final_data['TRAFFIC_CONTROL_DEVICE'] == 'NO CONTROLS'), 'CATEGORIES'] = 'INCAPACITATING INJURY without Device'
+# Assuming crashes_df is your DataFrame
 
-final_data.head()
+# Selecting relevant columns for correlation analysis
+selected_columns = ['FIRST_CRASH_TYPE', 'INJURIES_TOTAL']
+correlation_data = crashes_df[selected_columns]
 
+# Encoding categorical variables (First Crash Type) into numerical values
+correlation_data = pd.get_dummies(correlation_data, columns=['FIRST_CRASH_TYPE'], drop_first=True)
 
-# In[12]:
+# Calculating correlation matrix
+correlation_matrix = correlation_data.corr()
 
+# Extracting correlation values for 'INJURIES_TOTAL' column
+injuries_total_correlation = correlation_matrix['INJURIES_TOTAL']
 
-final_data.info()
+# Sorting correlation values in descending order
+injuries_total_correlation = injuries_total_correlation.abs().sort_values(ascending=False)
 
+print("Correlation between 'INJURIES_TOTAL' and 'FIRST_CRASH_TYPE' categories:")
+print(injuries_total_correlation)
 
-# In[13]:
 
 
-final_data.to_csv('scatter_mapbox_data.csv', index=False)
+import pandas as pd
+import matplotlib.pyplot as plt
 
 
-# In[13]:
+# Grouping the data by 'First Crash Type' and calculating the mean of 'Injuries Total' for each category
+mean_injuries_per_type = crashes_df.groupby('FIRST_CRASH_TYPE')['INJURIES_TOTAL'].mean().sort_values()
 
+# Plotting the bar chart
+plt.figure(figsize=(12, 8))
+mean_injuries_per_type.plot(kind='barh', color='skyblue')
+plt.title('Average Injuries Total by First Crash Type')
+plt.xlabel('Average Injuries Total')
+plt.ylabel('First Crash Type')
+plt.grid(axis='x')
+plt.tight_layout()
+plt.show()
 
-categories = final_data['CATEGORIES'].unique()
-categories
+import pandas as pd
+import plotly.express as px
 
+# Assuming crashes_df is your DataFrame
 
-# In[14]:
-
-
-# Initialize the Dash app
-app = dash.Dash(__name__)
-
-
-# In[15]:
-
-
-# Extract unique years and months from the CRASH_DATE column
-# Manually define unique months for correct order in dropdown menu
-unique_years = final_data['CRASH_DATE'].dt.year.unique()
-unique_months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-
-
-# In[16]:
-
-
-# Create list of dictionaries to give user option to select data for full year
-year_options = [{'label': 'All of 2022', 'value': 'All of 2022'},
-                {'label': 'All of 2023', 'value': 'All of 2023'}]
-
-
-# In[17]:
-
-
-# Create the layout using html.Div
-app.layout = html.Div([
-    # H1 element for the title
-    html.H1("Impact of Traffic Control Devices on Car Accidents",  style={'width': '500px', 'white-space': 'pre-wrap'}),
-    html.Div([
-        html.Div([
-            # Creating dropdown for year for user to select
-            html.Label("Select Year:", style={'font-size': '14px'}),
-            dcc.Dropdown(
-                id='year-dropdown',
-                # This creates options to select a year along with a month or a full year (2022 or 2023)
-                options=[{'label': str(year), 'value': year} for year in unique_years] + year_options,
-                # default value is "All of 2022"
-                value=year_options[0]['value'],
-                # Styled by using CSS for positioning in the map and font size
-                style={'width': '150px', 'font-size': '14px'}
-            )
-        ], style={'position': 'absolute', 'top': '10px', 'right': '180px'}),
-
-        html.Div([
-            # Creating dropdown for month for user to select
-            html.Label("Select Month:", style={'font-size': '14px'}),
-            dcc.Dropdown(
-                id='month-dropdown',
-                options=[{'label': month, 'value': month} for month in unique_months],
-                value=unique_months[0],
-                style={'width': '150px', 'font-size': '14px'}
-            )
-        ], style={'position': 'absolute', 'top': '10px', 'right': '10px'}),
-    ], style={'position': 'relative', 'height': '100px'}),
-    # Create a graph for displaying the map
-    dcc.Graph(id='map-graph')
-])
+# Grouping the data by 'First Crash Type' and calculating the mean of 'Injuries Total' for each category
+mean_injuries_per_type = crashes_df.groupby('FIRST_CRASH_TYPE')['INJURIES_TOTAL'].mean().sort_values().reset_index()
 
+# Plotting the bar chart using Plotly
+fig = px.bar(mean_injuries_per_type, 
+             x='INJURIES_TOTAL', 
+             y='FIRST_CRASH_TYPE', 
+             orientation='h', 
+             title='Average Injuries Total by First Crash Type',
+             labels={'INJURIES_TOTAL': 'Average Injuries Total', 'FIRST_CRASH_TYPE': 'First Crash Type'},
+             height=600,
+             width=800)
 
-
-# In[18]:
-
-
-# Define callback to update month dropdown options based on selected year
-@app.callback(
-    dash.dependencies.Output('month-dropdown', 'options'),
-    [dash.dependencies.Input('year-dropdown', 'value')])
-
-# defined a function that takes selected year as input and returns the month optioms
-def update_month_options(selected_year):
-    if selected_year in ['All of 2022', 'All of 2023']:
-        # If "All of 2022" or "All of 2023" is selected, return an empty list for month options
-        return []
-    else:
-        # Return the options for all months if "All of 2022" or "All of 2023" is NOT selected
-        return [{'label': month, 'value': month} for month in unique_months]
-
-# Define callback to update the map based on user selection
-@app.callback(
-    dash.dependencies.Output('map-graph', 'figure'),
-    [dash.dependencies.Input('year-dropdown', 'value'),
-     dash.dependencies.Input('month-dropdown', 'value')]
-)
-
-# Function that takes selected year and selected month as input
-def update_map(selected_year, selected_month):
-    # Convert month name to numeric values
-    month_to_num = {'January': 1, 'February': 2, 'March': 3, 'April': 4, 'May': 5, 'June': 6,
-                    'July': 7, 'August': 8, 'September': 9, 'October': 10, 'November': 11, 'December': 12}
-
-    # Check if "All of 2022" or "All of 2023" is selected
-    if selected_year in ['All of 2022', 'All of 2023']:
-        # Filter the DataFrame for the entire year
-        # Splits the selected year string into a list of strings, whitespace is delimiter, selects last element of that list
-        filtered_df = final_data[final_data['CRASH_DATE'].dt.year == int(selected_year.split()[-1])]
-    else:
-        # Convert selected year to integer and filter df based on selected year and month
-        selected_year = int(selected_year)
-        selected_month_num = month_to_num[selected_month]
-        filtered_df = final_data[(final_data['CRASH_DATE'].dt.year == selected_year) &
-                                 (final_data['CRASH_DATE'].dt.month == selected_month_num)]
-
-    # Create map using Plotly Express
-    fig = px.scatter_mapbox(filtered_df, lat='LATITUDE', lon='LONGITUDE', zoom=10)
-
-    # Define categories and colors
-    categories = sorted(filtered_df['CATEGORIES'].unique())
-    colors = ['red', 'blue', 'yellow', 'green']
-
-    # Add markers for each category
-    for category, color in zip(categories, colors):
-        # Filtering based on selected category
-        filtered_category_df = filtered_df[filtered_df['CATEGORIES'] == category]
-        # Grab count to show in tracing
-        count = len(filtered_category_df)
-        # Naming the tracing attributes by categories and by the count of those categories
-        name = f"{category}: {count}"
-        # List comprehension to iterate through all rows of df to pull date and device info
-        hover_text = [f"CRASH_DATE: {row['CRASH_DATE']}<br>TRAFFIC_CONTROL_DEVICE: {row['TRAFFIC_CONTROL_DEVICE']}" for _, row in filtered_category_df.iterrows()]
-        #Creating the scatter mapbox
-        fig.add_scattermapbox(
-            lat=filtered_category_df['LATITUDE'],
-            lon=filtered_category_df['LONGITUDE'],
-            mode='markers',
-            name=name,
-            marker=dict(color=color, size=10),
-            text=hover_text,
-            hoverinfo='text'
-        )
-
-    # Defining type of map and margins
-    fig.update_layout(mapbox_style="carto-positron")
-    fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
-
-    return fig
-
-# Run the Dash app
-if __name__ == '__main__':
-    app.run_server(debug=True)
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
+fig.show()
