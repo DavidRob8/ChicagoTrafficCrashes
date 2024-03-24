@@ -92,21 +92,3 @@ fig.update_layout(xaxis=dict(tickangle=-45))
 # Show the interactive plot
 fig.show()
 
-import plotly.express as px
-
-
-# Grouping the data by 'First Crash Type' and calculating the mean of 'DAMAGE' for each category
-mean_damage_per_type = crashes_df.groupby('FIRST_CRASH_TYPE')['DAMAGE'].mean().reset_index()
-
-# Plotting the bar chart using Plotly Express
-fig = px.bar(mean_damage_per_type, 
-             x='DAMAGE', 
-             y='FIRST_CRASH_TYPE', 
-             orientation='h', 
-             title='Average Damages by First Crash Type',
-             labels={'DAMAGE': 'Average Damage', 'FIRST_CRASH_TYPE': 'First Crash Type'},
-             height=800,  
-             width=1000)  
-
-# Show the plot
-fig.show()
