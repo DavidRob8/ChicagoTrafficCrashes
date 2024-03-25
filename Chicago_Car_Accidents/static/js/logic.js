@@ -16,7 +16,7 @@ function createMap(crashLayer, heatLayer, markerCluster, legends) {
   // Create a baseMaps object to hold the streetmap layer and the others.
   let baseMaps = {
     "Street Map": streetmap,
-    "Satellite": satellite,
+    "Satellite": satellite
     //"Dark Mode": darkMode
   };
 
