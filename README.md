@@ -1,6 +1,7 @@
 ## Project 3: City of Chicago Car Crashes
 ### UC Berkeley Data Analytics and Visualization Bootcamp 2023-24
 Group 4: Julio Dela Cruz, Everardo Garcia, Amanpreet Kaur, David Robles, Dylan Sui
+
 Project Website URL: https://davidrob8.github.io/ChicagoTrafficCrashes/
 
 
