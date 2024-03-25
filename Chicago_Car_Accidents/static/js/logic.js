@@ -17,7 +17,7 @@ function createMap(crashLayer, heatLayer, markerCluster, legends) {
   let baseMaps = {
     "Street Map": streetmap,
     "Satellite": satellite,
-    "Dark Mode": darkMode
+    //"Dark Mode": darkMode
   };
 
   // Create an overlayMaps object to hold the crashLayer, heatLayer, and markerCluster.
