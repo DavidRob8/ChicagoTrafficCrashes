@@ -18,7 +18,7 @@ The purpose of this project is to analyze the data regarding car crashes in the 
 
 ## Data Cleaning
 
-The initial dataset that we obtained from the source was massive. It contained data of car crashes in the city of Chicago stemming from back in 2015. There were over 800,000 rows in the csv file that we read into our Jupyter Notebook file. Due to the size, we narrowed down the data to only include car crashes from 2022 and 2023. This left our dataset with 219,125 rows. We dropped 27 columns that we deemed irrelevent to the questions we were asking of the dataset. We then converted the "CRASH_DATE" column to datetime to be able to filter dates properly. This was the initial dataset that we started with to create our visuals.
+The initial dataset that we obtained from the source was massive. It contained data of car crashes in the city of Chicago stemming from back in 2015. There were over 800,000 rows in the csv file that we read into our Jupyter Notebook file. Due to the size, we narrowed down the data to only include car crashes from 2022 and 2023. This left our dataset with 219,125 rows. We dropped 27 columns that we deemed irrelevent to the questions we were asking of the dataset. We then converted the "CRASH_DATE" column to datetime to be able to filter dates properly. This was the initial dataset that we started with to create our visualizations for all but one. The map shown under the Map Data tab in the webpage uses live data from https://dev.socrata.com/foundry/data.cityofchicago.org/85ca-t3if.
 
 
 ## Instructions
