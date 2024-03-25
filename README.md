@@ -24,7 +24,7 @@ The initial dataset that we obtained from the source was massive. It contained d
 Click on this link to go to our website. The home page has a summary of our project. There are five tabs that will take you to the different visualizations: Lighting and Weather, Map Data, Traffic Control Devices Map, Average Costs, and Monthly Data. The five questions listed above were answered with visualizations created with different programming languages, Python and JavaScript, as well as several different libraries. Below are instructions on how to use and interact with each visualization used to answer each corresponding question.
 
 #### 1. Lighting & Weather: How does lighting affect the amount of car crashes? (Julio)
-
+The purpose of these barplot visualizations is to examine the number of crashes depending on lighting and weather conditions in Chicago. It can give the viewer insight as to what certain type of conditions lead to the most amount of crashes. The barplots themselves have various options to further examine the data. Using the drop down menu and the legend on the right hand side, they can filter out data based on what they want to see. Hovering the cursor over the bar plots will also allow the user to see the amount of crashes that a specific condition has. 
 
 #### 2. Map Data: What are the areas in Chicago with the most accidents and what are the primary reasons? (Everardo)
 
