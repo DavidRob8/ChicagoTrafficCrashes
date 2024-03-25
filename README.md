@@ -23,10 +23,10 @@ The initial dataset that we obtained from the source was massive. It contained d
 
 Click on this link to go to our website. The home page has a summary of our project. There are five tabs that will take you to the different visualizations: Lighting and Weather, Map Data, Traffic Control Devices Map, Average Costs, and Monthly Data. The five questions listed above were answered with visualizations created with different programming languages, Python and JavaScript, as well as several different libraries. Below are instructions on how to use and interact with each visualization used to answer each corresponding question.
 
-### 1. Lighting & Weather: How does lighting affect the amount of car crashes? (Julio)
+#### 1. Lighting & Weather: How does lighting affect the amount of car crashes? (Julio)
 
 
-### 2. Map Data: What are the areas in Chicago with the most accidents and what are the primary reasons? (Everardo)
+#### 2. Map Data: What are the areas in Chicago with the most accidents and what are the primary reasons? (Everardo)
 
 The purpose of this map visualization is to show the areas of Chicago with the most car accidents while also finding the most common causes. This map uses live data from https://dev.socrata.com/foundry/data.cityofchicago.org/85ca-t3if.
 
@@ -36,17 +36,17 @@ The purpose of this map visualization is to show the areas of Chicago with the m
 - In the lower left part we can see the data we are seeing from what day until what day is this data.
 
 
-### 3. Traffic Control Devices Map: How does the presence of traffic control devices affect car crash rates and the incidence of severe injuries or fatalities? (David)
+#### 3. Traffic Control Devices Map: How does the presence of traffic control devices affect car crash rates and the incidence of severe injuries or fatalities? (David)
 
 Using Plotly Express and Dash in a Jupyter Notebook file, I created a scatter mapbox to show and compare serious car accidents (only car accidents that resulted in fatal or incapacitating injury) with or without a traffic control device (i.e. traffic signal, yield sign, school zone, etc.). The idea of the scatter mapbox is to see whether or not traffic control devices have had an effect on serious car accidents. The data set used is for car crashes in the city of Chicago for the years 2022 and 2023. 
 
 The map will display the city of Chicago, with markers representing car crashes. As shown in the legend, red markers represent accidents that were fatal with a device present, blue markers represent accidents that were fatal without a device present, yellow markers represent accidents that caused incapacitating injury with a device present, and green markers represent accidents that caused incapacitating injury without a device present. The legend also shows the count for each type of crash for the selected timeframe. There are two dropdown menus: "Select Year" and "Select Month". To view accidents for all of 2022 or all of 2023, select "All of 2022" or "All of 2023", respectively, in the "Select Year" dropdown menu. To view accidents by month, select "2022" or "2023" in the "Select Year" dropdown menu, and choose a month to view in the "Select Month" dropdown menu. You can also hover over the the markers to see the crash date and the traffic control device present, if any. 
 
 
-### 4. Average Costs: What is the most common type of accident, and what is the average cost of associated damages? (Dylan)
+#### 4. Average Costs: What is the most common type of accident, and what is the average cost of associated damages? (Dylan)
 
    
-### 5. Monthly Data: Are crash crashes more prevalent during certain days of week or months of year? (Aman)
+#### 5. Monthly Data: Are crash crashes more prevalent during certain days of week or months of year? (Aman)
    
 The working dataset was obtained from data_cleaning.ipynb as csv file and converted into .json format using csvtojson.py file, separated by each year. Within VS Code, I utilized D3.js library in JavaScript and Plotly.js in order to extract the car crash data by each month and each weekday over 2022 and 2023; and created two data visualizations in web browsers that can be launched from the HTML file. Users can access the console window by right-clicking inside the generated web browser page and selecting ‘Inspect’ to bring up the console log. This will help verify the .js code is running without any issue, and should auto-populate with 2022-2023 Total Crashes by Month and 2022-2023 Total Crashes by Weekday data. Concurrently, webpage should display one scatter plot and one bar chart visualizing this accrued data, respectively. Both visuals show the number of car crashes that occurred in Chicago between 2022 and 2023. Users can select/deselect the years individually from the legend accompanying each graph to look at the car crash data over one year alone. By hovering over each timepoint, users may also view the total number of car crashes displayed in pop-ups. These visuals help assess during which particular weekday(s) or month(s) did more car crashes occur over this two-year period. 
 
