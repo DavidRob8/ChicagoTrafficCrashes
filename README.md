@@ -69,12 +69,19 @@ The data that we used for this project is crash data within the City of Chicago 
 ## Sources
 
 https://dev.socrata.com/foundry/data.cityofchicago.org/85ca-t3if
+
 https://data.cityofchicago.org/resource/85ca-t3if.json
 
 
 ## Built With:
 
-Mapping:  https://leafletjs.com/, https://plotly.com/python/scattermapbox/, https://dash.plotly.com/
+Mapping:  
+
+https://leafletjs.com/
+
+https://plotly.com/python/scattermapbox/
+
+https://dash.plotly.com/
 
 
 
