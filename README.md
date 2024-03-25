@@ -12,7 +12,7 @@ The purpose of this project is to analyze the data regarding car crashes in the 
 1. How does lighting affect the amount of car crashes? (Julio)
 2. What are the areas in Chicago with the most accidents and what are the primary reasons? (Everardo)
 3. How does the presence of traffic control devices affect car crash rates and the incidence of severe injuries or fatalities? (David)
-4. What is the most common type of accident, and what is the average cost of associated damages? (Dylan)
+4. Which accident type on average has the highest injury count and what is the average cost of associated damages? (Dylan)
 5. Are crash crashes more prevalent during certain days of week or months of year? (Aman)
 
 
