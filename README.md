@@ -45,7 +45,7 @@ Using Plotly Express and Dash in a Jupyter Notebook file, I created a scatter ma
 The map will display the city of Chicago, with markers representing car crashes. As shown in the legend, red markers represent accidents that were fatal with a device present, blue markers represent accidents that were fatal without a device present, yellow markers represent accidents that caused incapacitating injury with a device present, and green markers represent accidents that caused incapacitating injury without a device present. The legend also shows the count for each type of crash for the selected timeframe. There are two dropdown menus: "Select Year" and "Select Month". To view accidents for all of 2022 or all of 2023, select "All of 2022" or "All of 2023", respectively, in the "Select Year" dropdown menu. To view accidents by month, select "2022" or "2023" in the "Select Year" dropdown menu, and choose a month to view in the "Select Month" dropdown menu. You can also hover over the markers to see the crash date and the traffic control device present, if any. 
 
 
-#### 4. Average Costs: Which accident type on average has the highest injury count and what is the average cost of associated damages? (Dylan)
+#### 4. Average Incidient Information: Which accident type on average has the highest injury count and what is the average cost of associated damages? (Dylan)
 
    
 #### 5. Monthly Data: Are crash crashes more prevalent during certain days of week or months of year? (Aman)
