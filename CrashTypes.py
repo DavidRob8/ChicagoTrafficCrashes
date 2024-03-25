@@ -53,7 +53,7 @@ mean_injuries_per_type = crashes_df.groupby('FIRST_CRASH_TYPE')['INJURIES_TOTAL'
 mean_injuries_per_type = crashes_df.groupby('FIRST_CRASH_TYPE')['INJURIES_TOTAL'].mean().sort_values().reset_index()
 
 # Plotting the bar chart using Plotly
-fig = px.bar(mean_injuries_per_type, 
+fig2 = px.bar(mean_injuries_per_type, 
              x='INJURIES_TOTAL', 
              y='FIRST_CRASH_TYPE', 
              orientation='h', 
@@ -62,7 +62,9 @@ fig = px.bar(mean_injuries_per_type,
              height=600,
              width=800)
 
-fig.show()
+fig2.show()
+
+fig2.write_html("crashType.html") #saving figure as html
 
 # Last chart
 
@@ -92,3 +94,4 @@ fig.update_layout(xaxis=dict(tickangle=-45))
 # Show the interactive plot
 fig.show()
 
+fig.write_html("dmgCost.html")

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DATA VISUAL</title>
+    <link rel="stylesheet" href="mainstyle.css">
+    
+</head>
+<body>
+    <section>
+        <header>
+            <h2>UCB DATA BOOTCAMP</h2>
+        
+            <div class="navigation">
+                <a href="./conditionIndex.html">Lighting & Weather</a>
+                <a href="Chicago_Car_Accidents/index.html">Map Data</a>
+                <a href="https://robles4293.pythonanywhere.com/">Traffic Control Devices Map</a>
+                <a href="./crash_type_cost.html">Average Costs</a>
+                <a href="crashMonth_days/indexMW.html">Monthly Data</a>
+            </div>
+
+        </header>
+        <div class="content">
+            <div class="info">
+                <h2>Group 4 <br><span>Project 3</span></h2>
+                <p>What are some factors that can contribute to traffic Incidents? Especially within a bustling city such as New York, San Francisco, and Chicago? Today, we will look at and explore data concerning traffic incidents that occurred within the city of Chicago.</p>
+                <p>Some questions that we want to answer are:</p>
+                    <ul>
+                        <li>How does Lighting and Weather Conditions affect the number of crashes?</li>
+                        <li>What are the areas in Chicago with the most accidents and what are the primary reasons?</li>
+                        <li>How does the presence of traffic control devices affect car crash rates and the incidence of severe injuries or fatalities?</li>
+                        <li>What are the average costs of a crash depending on how it started?</li>
+                        <li>Are crash crashes more prevalent during certain days of week or months of year?</li>
+                    </ul>
+                <h3>Data Cleaning</h3>
+                <p>The initial dataset that we obtained from the source was massive. It contained data of car crashes in the city of Chicago stemming from back in 2015. There were over 800,000 rows in the csv file that we read into our Jupyter Notebook file. Due to the size, we narrowed down the data to only include car crashes from 2022 and 2023. This left our dataset with 219,125 rows. We dropped 27 columns that we deemed irrelevent to the questions we were asking of the dataset. We then converted the "CRASH_DATE" column to datetime to be able to filter dates properly. This was the initial dataset that we started with to create our visuals.</p>
+                <h5>Ethical Considerations</h5>
+                    <p>The data that we used for this project is crash data within the City of Chicago limits and under the jurisdiction of the Chicago Police Department (CPD). The actual data shown is extracted from the electronic reporting system (E-Crash) that is used at the CPD, but it excludes any personally identifiable information. Given that this is a public dataset API, we were made more comfortable using it for our project knowing that personal information about sensitive occurences such as car accidents were excluded. Another ethical consideration we looked at was that Socrata, the creator of this Chicago API, was acquired by Tyler Technologies in 2018 and is now the Data and Insights division of Tyler. The platform is still powered by the same software formerly known as Socrata, but there are references to Data & Insights. As we discussed in class, when companies get sold or merged, the ownership and the transferring of data creates risk that can be tricky to navigate. However, as mentioned previously, we were comfortable using this data set as the primary purpose of the data source is for users to explore the data.</p>
+                <h4>Limitations</h4>
+                    <ul>
+                        <li>Data from E-Crash are available for some police districts in 2015, but citywide data are not available until September 2017.</li>
+                        <li>About half of all crash reports, mostly minor crashes, are self-reported at the police district by the driver(s) involved and the other half are recorded at the scene by the police officer responding to the crash.</li>
+                        <li>Many of the crash parameters, including street condition data, weather condition, and posted speed limits, are recorded by the reporting officer based on best available information at the time, but many of these may disagree with posted information or other assessments on road conditions.</li>
+                        <li>If any new or updated information on a crash is received, the reporting officer may amend the crash report at a later time.</li>
+                        <li>A traffic crash within the city limits for which CPD is not the responding police agency, typically crashes on interstate highways, freeway ramps, and on local roads along the City boundary, are excluded from this dataset.</li>
+                
+
+                    </ul>
+                
+                <h6>Sources</h6>
+                    <ul>
+                        <li><a href="https://dev.socrata.com/foundry/data.cityofchicago.org/85ca-t3if">Dev Socrata</a></li>
+                        <li><a href="https://data.cityofchicago.org/resource/85ca-t3if.json">City of Chicago JSON</a></li>
+                    </ul>
+            </div>
+        </div>
+
+    </section>
+
+</body>
+</html>
